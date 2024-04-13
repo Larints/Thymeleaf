@@ -30,10 +30,9 @@ public class GameController {
     }
 
     @PostMapping("/add-game")
-    public String addGame(@RequestBody Game game, Model model) {
-        model.addAttribute("games", service.getAllGames());
+    public String addGame(Game game, Model model) {
         service.addGame(game);
-        return "all-games";
+        return "redirect:/games";
     }
 
 
