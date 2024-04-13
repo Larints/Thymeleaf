@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Games</title>
+</head>
+<body>
+<div class="form-block" th:switch="${games}">
+    <h2 th:case="null">Нет игр!</h2>
+    <div th:case="*">
+        <h2>Games</h2>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="game : ${games}">
+                <td  th:text="${game.id}"></td>
+                <td> <a th:href="@{/games/{id}(id=${game.id})}" th:text="${game.name}"></a></td>
+                <td th:text="${game.description}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>
+        <a class="btn btn-primary" href="games/add-game">Добавить Игру</a>
+    </p>
+</div>
+</body>
+</html>
